@@ -19,6 +19,11 @@ div#carousel {
     transition: all .3s ease-in-out;
 }
 
+.botoes-carousel {
+    display: flex;
+    align-items: center;
+}
+
 div#carousel-title a {
     text-decoration: none;
 }
@@ -117,4 +122,6 @@ button {
     color: #fff;
     border: 0px;
     border-radius: 10px;
+    margin: auto;
+    
 }
