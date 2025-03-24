@@ -3,12 +3,9 @@
 //carousel
 
 //Array storage class
-let carouselArr = [];
 
-
-//class Carousel
+const carouselArr = [];
 class Carousel {
-
     constructor(image, title, url) {
         this.image = image;
         this.title = title;
@@ -17,40 +14,65 @@ class Carousel {
       
     static Start(arr){
         if(arr){
-
             if(arr.length > 0){
                 Carousel._sequence = 0;
                 Carousel._size = arr.length;
-                Carousel.Next(); //start
-                Carousel._interval = setInterval(function(){ Carousel.Next(); },2000);
+                Carousel.Next(arr); //start
+                Carousel._interval = setInterval(function(){ Carousel.Next(arr); }, 2000);
             }
-            
         } else {
-            throw "Method Start need a Array Variable.";
+            throw "Method Start needs an Array Variable.";
         }
     }
     
-    static Next(carouselArr){ 
-        const carouselDiv = document.getElement('carousel');
+    static Next(carouselArr) {
+        const carouselDiv = document.getElementById('carousel');
         const carouselTitleDiv = document.getElementById('carousel-title');
 
-        carouselArr.push(new Carousel("imagem_1.jpg","Esta é a nova Ranger Ford 2022. Verifique novidades.","lancamento.html"));
-            carouselArr.push(new Carousel("imagem_2.jpg","Ford a nossa história","#"));
-            carouselArr.push(new Carousel("imagem_3.jpg","Nova Ford Bronco Sport 2022","lancamento.html"));]
+        if(Carousel._sequence === 0) {
+            
+            const newItems = [
+                new Carousel("imagem_1.jpg", "Esta é a nova Ranger Ford 2022. Verifique novidades.", "lancamento.html"),
+                new Carousel("imagem_2.jpg", "Ford a nossa história", "#"),
+                new Carousel("imagem_3.jpg", "Nova Ford Bronco Sport 2022", "lancamento.html")
+            ];
+    
+            carouselArr.push(...newItems);
+    
+            carouselArr.forEach(item => {
+                Carousel.appendImage(carouselDiv, item.image);
+                Carousel.appendTitle(carouselTitleDiv, item.title, item.url);
+            });
+        }
 
-           
-            for(let i = 0; i < carouselArr.length; i++) {
-                let img = document.createElement("img")
-                img.setAttribute("src", carouselArr[i].img);
-                document.getElementById("carousel").insertAdjacentElement("beforeend", img)
+        // Atualiza a imagem ativa no carrossel
+        const images = carouselDiv.getElementsByTagName("img");
+        const titles = carouselTitleDiv.getElementsByTagName("a");
 
-                let texto = document.createElement("a")
-                texto.innerHTML = carouselArr[i].titulo
-                document.getElementById("carousel-title").insertAdjacentElement("beforeend", texto)            
-            }
+        Array.from(images).forEach(img => img.classList.remove("active"));
+        Array.from(titles).forEach(title => title.classList.remove("active"));
 
+        images[Carousel._sequence].classList.add("active");
+        titles[Carousel._sequence].classList.add("active");
+
+        Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
     }
-};
+
+    static appendImage(parent, src) {
+        const img = document.createElement("img");
+        img.setAttribute("src", src);
+        parent.appendChild(img);
+    }
+
+    static appendTitle(parent, title, link) {
+        const anchor = document.createElement("a");
+        anchor.innerHTML = title;
+        anchor.setAttribute("href", link);
+        parent.appendChild(anchor);
+    }
+}
+
+// Exemplo de uso:
 
 Carousel.Start(carouselArr);
         

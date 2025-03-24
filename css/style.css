@@ -18,7 +18,12 @@ div#carousel {
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-
+#carousel img {
+    display: none;
+}
+#carousel img.active {
+    display: block;
+}
 div#carousel-title a {
     text-decoration: none;
 }
@@ -30,6 +35,8 @@ div#carousel-title  {
     margin-bottom: 10px;
     font-weight: bold;
 }
+
+
 
 header ul {
     text-align: center;
