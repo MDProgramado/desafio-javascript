@@ -28,6 +28,12 @@ class Carousel {
         const carouselSlide = document.getElementById('carousel');
         const carouselTitle = document.getElementById('carousel-title');
 
+        const newItems = [
+            carouselArr.push(new Carousel("imagem_1.jpg", "Esta é a nova Ranger Ford 2022. Verifique novidades.", "lancamento.html"));
+            carouselArr.push(new Carousel("imagem_2.jpg", "Ford a nossa história", "index.html"));
+            carouselArr.push(new Carousel("imagem_3.jpg", "Nova Ford Bronco Sport 2022", "lancamento.html"));
+        ]
+        
         if (carouselSlide && carouselTitle) {
             const slide = carouselArr[Carousel._sequence];
 
@@ -41,3 +47,5 @@ class Carousel {
         }
     }
 };
+
+Carousel.Start(carouselArr);
