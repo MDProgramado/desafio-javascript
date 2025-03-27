@@ -6,8 +6,6 @@ class Carousel {
         this.Image = image;
         this.Title = title;
         this.Url = url;
-
-        
     }
 
     static Start(arr) {

@@ -1,25 +1,33 @@
 
+iframe {
+    display: block;
+    margin-bottom: 1.875rem; 
+    margin-left: auto; 
+    margin-right: auto; 
+    width: 100%;    
+    height: 31.25rem;
+}
 ul.modelcars {
     display: block;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 
 ul.modelcars li {
     display: inline-block;
     text-align: left;
-    width: 300px;
+    width: 18.75rem;
     vertical-align: top;
 }
 
 img.photocar {
     display: block;
-    width: 250px;
+    width: 15.625rem;
 }
 
 .checkbox {
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;;
     border: 1px solid #1b357e;
 }
 
@@ -28,21 +36,22 @@ img.photocar {
 }
 
 .info {
-    width: 200px;
+    width: 12.5rem;
     vertical-align: top;
 }
 
 .textmodel {
     display: block;
     text-align: left;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #1351d8;
-    
+
 }
+
 .textprice {
     display: block;
     text-align: left;
-    font-size: 10px;
+    font-size: 0.625rem;
 }
 
 table {
@@ -51,35 +60,139 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-top: 2vh;
-    margin-bottom: 10px;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
+    margin-bottom: 0.625rem;
+}
 
-  td:nth-child(1) {  
+th,
+td {
+    text-align: left;
+    padding: 0.5rem;
+}
+
+td:nth-child(1) {
     font-weight: 700;
     width: 40%;
-  }
+}
 
-  tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 div#compare {
     position: absolute;
     display: none;
     width: 50vw;
-    max-width: 800px;
-    min-width: 400px;
-    height: 80vh;
-    max-height: 700px;
-    min-height: 350px;
+    max-width: 50rem;
+    min-width: 25rem;
+    height: 100vh;
+    max-height: 43.75rem;
+    min-height: 21.875rem;
     background: #fff;
     top: calc(100vh - 80%);
     left: 25vw;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 0.625rem;
+    padding: 0.625rem;
     -webkit-box-shadow: 1px 1px 6px 0px rgb(0 0 0 / 34%);
     box-shadow: 1px 1px 6px 0px rgb(0 0 0 / 34%);
+}
+
+/* Responsividade */
+@media (min-width:1201px) and (max-width: 1928px) {
+    ul.modelcars {
+        display: flex;
+        justify-content: center;
+    }
+
+    div#compare {
+        width: 70vw;
+        left: 15vw;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+    ul.modelcars {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    ul.modelcars li {
+        width: 45%;
+        margin-bottom: 20px;
+    }
+
+    img.photocar {
+        width: 100%;
+    }
+
+    div#compare {
+        width: 80vw;
+        left: 10vw;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    ul.modelcars {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    ul.modelcars li {
+        width: 80%;
+    }
+
+    img.photocar {
+        width: 100%;
+    }
+
+    div#compare {
+        width: 90vw;
+        left: 5vw;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td:nth-child(1) {
+        width: 50%;
+    }
+}
+
+@media (max-width: 480px) {
+    ul.modelcars {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    ul.modelcars li {
+        width: 100%;
+    }
+
+    img.photocar {
+        width: 100%;
+    }
+
+    div#compare {
+        width: 95vw;
+        left: 2.5vw;
+        height: auto;
+        max-height: none;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    td:nth-child(1) {
+        width: 60%;
+    }
+
+    button {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+    }
 }

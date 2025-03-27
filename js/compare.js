@@ -1,7 +1,6 @@
 
 //car
-let carDict = [];
-let lista = [];
+let carArr = [];
 class Car {
    
 
@@ -20,37 +19,61 @@ class Car {
     }
 } 
 
-// search on array if exist carClass returning 1 if not return -1
+ // search on array if exist carClass returning 1 if not return -1
+
 function GetCarArrPosition(arr, carClass) {
     
-    let list = document.querySelectorAll('input[onchange]:checked')
-    lista = Array.from(lista).map(cb => cb.value)
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i].nome === carClass.nome)
+            return i;
+    }
 
+    return -1;
 }
 
 function SetCarToCompare(el, carClass) {
-   
-    if(carClass instanceof Car){       
-        if(el.checked){
 
-            carDict[el.value] = carClass;
+    try {
+        if(!(carClass instanceof Car)) {
+            throw new Error("Você é obrigado a passar um objeto da classe Car para funcionar");
+        }
 
-            GetCarArrPosition() 
+        if(el.checked) {
+            if (carArr.length >= 2) {
+                alert("VocÊ só pode comparar 2 veiculos!");
+                el.checked = false;
+                return;
+            }
 
-                
-            
-        } else {
-            lista = lista.filter(value => valor !== el.value);
-            delete carDict[el.value]
-          
-        } 
-    } else {
-        throw "You need set a Car Class";
-    }
+            carArr.push(carClass);
+
+        }
+
+        else {
+            let index = GetCarArrPosition(carArr, carClass);
+            if (index !== -1) {
+                carArr.splice(index, 1);
+            }
+        }
+} catch(error) {
+    alert(error.message);
+}
+
+updateCheckboxesState()
+}
+
+
+
+function updateCheckboxesState() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => { checkbox.disabled = !checkbox.checked && carArr.length >= 2;
+
+    });
 }
 
 function ShowCompare() {
-    if(lista.length < 2 || lista.length > 2) {
+    if(carArr.length < 2 || carArr.length > 2) {
+
         alert("Precisa marcar 2 carros para apresentar a comparação");
         return;
     }
@@ -64,6 +87,25 @@ function HideCompare(){
 }
 
 function UpdateCompareTable() {
-   
+   carArr.forEach((car, index) => {
+
+    if(index < 2) {
+        document.getElementById(`compare_image_${index}`).innerHTML = `<img src="${car.image}" width="12.5rem" alt="imagem do ${car.nome}">`
+        document.getElementById(`compare_modelo_${index}`).textContent = car.nome;
+        document.getElementById(`compare_alturacacamba_${index}`).textContent = car.alturaCacamba;
+
+        document.getElementById(`compare_alturaveiculo_${index}`).textContent = car.alturaVeiculo;
+        document.getElementById(`compare_alturasolo_${index}`).textContent = car.alturaSolo;
+        document.getElementById(`compare_capacidadecarga_${index}`).textContent = car.capacidadeCarga;
+        document.getElementById(`compare_motor_${index}`).textContent = car.motor;
+
+        document.getElementById(`compare_potencia_${index}`).textContent = car.potencia;
+        document.getElementById(`compare_volumecacamba_${index}`).textContent = car.volumeCacamba;
+
+        document.getElementById(`compare_roda_${index}`).textContent = car.roda;
+        document.getElementById(`compare_preco_${index}`).textContent = `R$ ${car.preco}`;
+
+    }
+   });
 
 }
