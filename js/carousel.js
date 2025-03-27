@@ -1,40 +1,51 @@
 
-let carouselArr = [];
+const carouselArr = [];
+
 
 class Carousel {
-    constructor(image, title, url) {
-        this.Image = image;
-        this.Title = title;
-        this.Url = url;
+    constructor(Imagem, Title, Url) {
+        this.imagem = Imagem;
+        this.title = Title;
+        this.url = Url;
     }
 
     static Start(arr) {
-        if (arr && arr.length > 0) {
+        if ( arr.length > 0) {
             Carousel._sequence = 0;
-            Carousel._size = arr.length;
-            Carousel.Next(arr); //Start
-            Carousel._interval = setInterval(() => Carousel.Next(arr), 2000);
+            Carousel._size = arr.length; 
+            Carousel._arr = arr; 
+
+            Carousel.Next();
+
+            Carousel._interval = setInterval(function () {
+                Carousel.Next();
+            }, 2000);
         } else {
-            throw "Method Start need a Array Variable.";
+            throw "Method Start needs an Array Variable.";
         }
     }
+    static Next() {
+ 
+  const carouselElement = document.getElementById('carousel');
+  const titleElement = document.getElementById('carousel-title');
 
-    static Next(arr) {
-        const carouselSlide = document.getElementById('carousel');
-        const carouselTitle = document.getElementById('carousel-title');
+  
+  carouselElement.innerHTML = '';
+  titleElement.innerHTML = '';
 
-        if (carouselSlide && carouselTitle) {
-            const slide = arr[Carousel._sequence];
+ 
+  const img = document.createElement('img');
+  img.setAttribute('src', Carousel._arr[Carousel._sequence].imagem);
+  carouselElement.appendChild(img);
 
-            carouselSlide.style.backgroundImage = `url('img/${slide.Image}')`;
-            carouselSlide.style.backgroundSize = 'cover';
-            carouselSlide.innerHTML = "";
-            
-            carouselTitle.innerHTML = `<a href="${slide.Url}">${slide.Title}</a>`;
-            
-            Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
-        }
+ 
+  const title = document.createElement('a');
+  title.setAttribute('href',  Carousel._arr[Carousel._sequence].url)
+  title.textContent = Carousel._arr[Carousel._sequence].title;
+  titleElement.appendChild(title);
+
+  
+  Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
     }
-}
-
-
+};
+  

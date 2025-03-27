@@ -8,6 +8,7 @@
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/form.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
     <script src="js/form.js"></script>
 </head>
 <body>
@@ -37,18 +38,19 @@
             </div>
             <div>
                 <h2 class="titulo">Sobre Você</h2>
-                <form id="meuFormulario">
-                <input type="text" name="nome" placeholder="NOME*" class="fordform" required>
+            <form onsubmit="return false";>
+                <input type="text"  id="nomeid" name="nome" placeholder="NOME*" class="fordform" required>
                 <input type="text" name="email" placeholder="E-MAIL*" class="fordform" required>
-                <input type="text" name="cpf" placeholder="CPF*" class="fordform" required>
-                <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="fordform" required>
                 <input type="text" name="telefone" placeholder="TELEFONE*" class="fordform" required>
                 <select name="contato" class="fordform" required>
-                    <option  disabled selected>COMO DESEJA SER CONTATADO</option>
-                    <option>TELEFONE</option>
-                    <option>E-MAIL</option>
+                    <option selected>COMO DESEJA SER CONTATADO</option>
+                    <option value="telefone">TELEFONE</option>
+                    <option value="email">ELOGIO</option>
+                    <option value="email">RECLAMAÇÃO</option>
+                    <option value="email">SOLICITAÇÃO</option>
+
                 </select>
-                <button type="submit">Enviar</button>
+            <button type="submit" onclick= "Post(this.form); Enviar();">Enviar</button>
             </form>
             </div>
         </div>
