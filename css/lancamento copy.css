@@ -1,10 +1,4 @@
-html {
-    height: 100%;
-}
 
-body {
-    height: 100%;
-}
 iframe {
     display: block;
     margin-bottom: 1.875rem; 
@@ -21,8 +15,6 @@ iframe {
     margin: 0 auto;
     font-size: 1rem;
     flex-wrap: wrap;
-    text-align: justify;
-    
 }
 ul.modelcars {
     display: block;
@@ -60,96 +52,64 @@ img.photocar {
 .textmodel {
     display: block;
     text-align: left;
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #1351d8;
-    
+
 }
+
 .textprice {
     display: block;
     text-align: left;
-    font-size: 10px;
+    font-size: 0.625rem;
+}
+
+#compare img {
+    width: 10rem;
+}
+
+#compare {
+    margin: auto;
 }
 
 table {
-    display: flex;
-    justify-content: center;
     border-collapse: collapse;
-    width: 100%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 2vh;
-    margin-bottom: 1%;
-    img{width:80%;}
-  }
-  
-  th, td {
-    font-size: small;
-    text-align: left;
-    padding: 1%;
-    font-size: 1em;
-    
-  }
-
-tbody{
-    padding: 1%;
-  
+    margin-bottom: 0.625rem;
 }
 
-  
-  td:nth-child(1) {  
+th,
+td {
+    text-align: left;
+    padding: 0.5rem;
+}
+
+td:nth-child(1) {
     font-weight: 700;
-   
-  }
+    width: 40%;
+}
 
-
-  tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 div#compare {
     position: absolute;
-    display: flex;
     display: none;
-    width: 40%;
-    align-items: center;
-    left: 30%;
-    min-height: 55% ;
-    max-height: 80%;
-    font-size: 90%;
-    float: right;
+    width: 50vw;
+    max-width: 50rem;
+    min-width: 25rem;
+    height: 100vh;
+    max-height: 43.75rem;
+    min-height: 21.875rem;
     background: #fff;
-    top: 25%;
-    border-radius: 10px;
-   
+    top: calc(100vh - 80%);
+    left: 25vw;
+    border-radius: 0.625rem;
+    padding: 0.625rem;
     -webkit-box-shadow: 1px 1px 6px 0px rgb(0 0 0 / 34%);
     box-shadow: 1px 1px 6px 0px rgb(0 0 0 / 34%);
-    /* img{width: 100%;} */
-}
-@media screen and (max-width:580px){
-    div#compare {
-        width: 80%;
-  }
-}
-.caixaInvisivel{
-    padding: 0%;
-}
-
-#botaoTable{
-width: 30%;
-height: 2em;
-font-size: small;
- 
-}
-
-#divbotao{
-    display: flex;
-    justify-content: center;
-}
-
-
-@media screen and (max-width:580px){
-    div#compare {
-        left: 10%;
-  }
-}
-
-div#compare {
-
 }
 
