@@ -28,7 +28,7 @@ class Carousel {
  
   const carouselElement = document.getElementById('carousel'); //Entra dentro do html para manipular a div
   const titleElement = document.getElementById('carousel-title'); 
-
+; 
   
   carouselElement.innerHTML = ''; //Remove o conteudo que esta do lado 
   titleElement.innerHTML = '';
@@ -45,7 +45,22 @@ class Carousel {
   titleElement.appendChild(title);
 
   
+
+  
+
+  
   Carousel._sequence = (Carousel._sequence + 1) % Carousel._size; //Faz o carousel voltar ao inicio usando o elemento % que é como um modelador para o tamanho do carousel 
     }
 };
+
+Next() {
+    Carousel._sequence === Carousel._size - 1 ?  Carousel._sequence = 0 :  Carousel._sequence++
+    this.UpdateImage()
+}
+
+Back() {
+    Carousel._sequence === 0 ?Carousel._size = Carousel._size - 1 :  Carousel._sequence--
+    this.UpdateImage()
+}
+
   
