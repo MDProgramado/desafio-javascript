@@ -42,6 +42,10 @@ h2 {
 }
 
 
+
+input:focus {
+    border-color: blue;
+}
 button {
     width: 200px;
     height: 40px;

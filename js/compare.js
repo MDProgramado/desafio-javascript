@@ -1,9 +1,8 @@
 
 //car
-let carArr = [];
-class Car {
-   
-
+let carArr = []; //Array dos carros 
+class Car { //Class carros
+//O que tem dento da class carro = formulario padrão 
     constructor(nome, preco, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, image){
        this.nome = nome;
        this.preco = preco;
@@ -21,52 +20,54 @@ class Car {
 
  // search on array if exist carClass returning 1 if not return -1
 
+ //Procura a posição no array e class car especifico 
 function GetCarArrPosition(arr, carClass) {
     
     for(let i = 0; i < arr.length; i++) {
-        if(arr[i].nome === carClass.nome)
+        if(arr[i].nome === carClass.nome) //Se o nome do array e o nome do carro for igual, retorne a i
             return i;
     }
 
     return -1;
 }
 
-function SetCarToCompare(el, carClass) {
+function SetCarToCompare(el, carClass) { 
 
     try {
         if(!(carClass instanceof Car)) {
-            throw new Error("Você é obrigado a passar um objeto da classe Car para funcionar");
+            throw new Error("Você é obrigado a passar um objeto da classe Car para funcionar"); //Checa se o produto é valido 
         }
 
         if(el.checked) {
-            if (carArr.length >= 2) {
+            if (carArr.length >= 2) { //Verifica se foi selecionado 2 horas 
                 alert("VocÊ só pode comparar 2 veiculos!");
                 el.checked = false;
                 return;
             }
 
-            carArr.push(carClass);
+            carArr.push(carClass); //Se tiver espaço coloca no espaço 
 
         }
 
         else {
-            let index = GetCarArrPosition(carArr, carClass);
+            let index = GetCarArrPosition(carArr, carClass); //Procura o carro na posição e cria a variavel index 
             if (index !== -1) {
-                carArr.splice(index, 1);
+                carArr.splice(index, 1); // Desmarca o carousel 
             }
         }
-} catch(error) {
+} catch(error) { //Caro dê algum erro 
     alert(error.message);
 }
 
-updateCheckboxesState()
+updateCheckboxesState() //Atualiza o display com as infos 
 }
 
 
 
 function updateCheckboxesState() {
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(checkbox => { checkbox.disabled = !checkbox.checked && carArr.length >= 2;
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]'); //Faz uma lista com todos os input do checkbox
+        checkboxes.forEach(checkbox => { checkbox.disabled = !checkbox.checked && carArr.length >= 2; //Se você JÁ marcou esta opção, ela fica sempre liberada Se já tem 2 carros selecionados, 
+        // TRAVA todas as opções não marcadas  
 
     });
 }

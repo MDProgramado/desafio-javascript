@@ -46,6 +46,7 @@ img.photocar {
     width: 1.875rem;
     height: 1.875rem;;
     border: 1px solid #1b357e;
+    cursor: pointer;
 }
 
 .infocar div {
@@ -55,6 +56,7 @@ img.photocar {
 .info {
     width: 12.5rem;
     vertical-align: top;
+    cursor: pointer;
 }
 
 .textmodel {
