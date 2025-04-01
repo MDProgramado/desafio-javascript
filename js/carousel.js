@@ -54,13 +54,13 @@ class Carousel {
 };
 
 Next() {
-    Carousel._sequence === Carousel._size - 1 ?  Carousel._sequence = 0 :  Carousel._sequence++
-    this.UpdateImage()
+    Carousel._sequence === carouselArr.length - 1 ?  Carousel._sequence = 0 :  Carousel._sequence++
+    Next()
 }
 
 Back() {
-    Carousel._sequence === 0 ?Carousel._size = Carousel._size - 1 :  Carousel._sequence--
-    this.UpdateImage()
+    Carousel._sequence === 0 ? Carousel._size = carouselArr.length - 1 :  Carousel._sequence--
+    Next()
 }
 
   
