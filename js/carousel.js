@@ -53,14 +53,25 @@ class Carousel {
     }
 };
 
-Next() {
-    Carousel._sequence === carouselArr.length - 1 ?  Carousel._sequence = 0 :  Carousel._sequence++
-    Next()
+function Next() {
+     clearInterval(Carousel._interval);
+    if (Carousel._sequence === carouselArr.length - 1) {
+        Carousel._sequence = 0;
+    } else {
+        Carousel._sequence++;
+    }
+    Carousel.Next(); 
+    Carousel._interval = setInterval(() => Carousel.Next(), 2000);
 }
 
-Back() {
-    Carousel._sequence === 0 ? Carousel._size = carouselArr.length - 1 :  Carousel._sequence--
-    Next()
+function Back() {
+    clearInterval(Carousel._interval);
+    if (Carousel._sequence === 0) {
+        Carousel._sequence = carouselArr.length - 1;
+    } else {
+        Carousel._sequence--;
+    }
+    Carousel.Next(); 
+    Carousel._interval = setInterval(() => Carousel.Next(), 2000);
 }
-
   
