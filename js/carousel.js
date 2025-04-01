@@ -3,75 +3,71 @@ const carouselArr = [];
 
 //Class Carousel = Formulario padrão para toda vez que eu quiser recriar o mesmo codigo 
 class Carousel {
-    constructor(Imagem, Title, Url) {  //oq tem dentro do formulario
+    constructor(Imagem, Title, Url) {
         this.imagem = Imagem;
         this.title = Title;
         this.url = Url;
     }
 
-    static Start(arr) { //Botao de iniciar o codigo 
-        if ( arr.length > 0) { //verifica o tamanho dos elementos, estiver vazio ele vai para o else do erro 
-            Carousel._sequence = 0; //Define a ´posição atual do carousel
-            Carousel._size = arr.length;  //Define o tamnaho do array como tamanho carousel
-            Carousel._arr = arr;  //Guarda a fotos no carousel
+    static Start(arr) {
+        if (arr.length > 0) {
+            Carousel._sequence = 0;
+            Carousel._size = arr.length;
+            Carousel._arr = arr;
 
-            Carousel.Next(); //Monstra a primeira foto imediantamente
+            Carousel.Show(); // Exibe o primeiro item sem alterar _sequence
 
-            Carousel._interval = setInterval(function () { //Define um intervalo de 2s e inicia a primeira foto 
+            Carousel._interval = setInterval(() => {
                 Carousel.Next();
             }, 2000);
         } else {
-            throw "Method Start needs an Array Variable."; //Erro caso o tamanho do array estiver vazio 
+            throw "Method Start needs an Array Variable.";
         }
     }
-    static Next() { //Metodo que chama a função 
- 
-  const carouselElement = document.getElementById('carousel'); //Entra dentro do html para manipular a div
-  const titleElement = document.getElementById('carousel-title'); 
-; 
-  
-  carouselElement.innerHTML = ''; //Remove o conteudo que esta do lado 
-  titleElement.innerHTML = '';
 
- 
-  const img = document.createElement('img'); //Cria o elemento img e adiciona em uma variavel 
-  img.setAttribute('src', Carousel._arr[Carousel._sequence].imagem); //Pega o endereço da imagem na posição atual e seta o atributo 
-  carouselElement.appendChild(img); //Adiciona a imagem criada ao local do carousel 
+    // Método que só exibe o item atual
+    static Show() {
+        const carouselElement = document.getElementById('carousel');
+        const titleElement = document.getElementById('carousel-title');
 
- 
-  const title = document.createElement('a');
-  title.setAttribute('href',  Carousel._arr[Carousel._sequence].url)
-  title.textContent = Carousel._arr[Carousel._sequence].title;
-  titleElement.appendChild(title);
+        carouselElement.innerHTML = '';
+        titleElement.innerHTML = '';
 
-  
+        const img = document.createElement('img');
+        img.setAttribute('src', Carousel._arr[Carousel._sequence].imagem);
+        carouselElement.insertAdjacentElement("beforeend", img);
 
-  
-
-  
-  Carousel._sequence = (Carousel._sequence + 1) % Carousel._size; //Faz o carousel voltar ao inicio usando o elemento % que é como um modelador para o tamanho do carousel 
+        const title = document.createElement('a');
+        title.setAttribute('href', Carousel._arr[Carousel._sequence].url);
+        title.textContent = Carousel._arr[Carousel._sequence].title;
+        titleElement.appendChild(title);
     }
-};
 
-function Next() {
-     clearInterval(Carousel._interval);
-    if (Carousel._sequence === carouselArr.length - 1) {
-        Carousel._sequence = 0;
-    } else {
-        Carousel._sequence++;
+    static Next() {
+        // Exibe o item atual e depois incrementa o índice
+        Carousel.Show();
+        Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
     }
-    Carousel.Next(); 
-    Carousel._interval = setInterval(() => Carousel.Next(), 2000);
+
+    static Prev() {
+        // Decrementa o índice e exibe o item anterior sem incrementar
+        Carousel._sequence = (Carousel._sequence - 1 + Carousel._size) % Carousel._size;
+        Carousel.Show();
+    }
 }
 
 function Back() {
     clearInterval(Carousel._interval);
-    if (Carousel._sequence === 0) {
-        Carousel._sequence = carouselArr.length - 1;
-    } else {
-        Carousel._sequence--;
-    }
-    Carousel.Next(); 
-    Carousel._interval = setInterval(() => Carousel.Next(), 2000);
+    Carousel.Prev();
+    Carousel._interval = setInterval(() => {
+        Carousel.Next();
+    }, 2000);
 }
-  
+
+function Prox() {
+    clearInterval(Carousel._interval);
+    Carousel.Next();
+    Carousel._interval = setInterval(() => {
+        Carousel.Next();
+    }, 2000);
+}
