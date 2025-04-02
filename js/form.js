@@ -2,7 +2,7 @@
 //class contato
 
 class contato {
-    constructor(nome, sobrenome, email, cpf, telefone, contato){
+    constructor(nome, email, telefone, contato){
         this.nome = nome;
         this.email = email;
         this.telefone = telefone; 

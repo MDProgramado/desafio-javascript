@@ -55,7 +55,7 @@ function SetCarToCompare(el, carClass) {
                 carArr.splice(index, 1); // Desmarca o carousel 
             }
         }
-} catch(error) { //Caro dê algum erro 
+} catch(error) { //Caso dê algum erro 
     alert(error.message);
 }
 

@@ -20,6 +20,7 @@ div#carousel {
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
     text-align: center;
+    cursor: pointer;
     
     img{
         width: 100%;   
@@ -35,6 +36,7 @@ div#carousel-title a {
     font-size: 80%;
     text-decoration: none;
     color: #1b357e;
+    cursor: pointer;
 }
 
 
@@ -50,6 +52,7 @@ div#carousel-title  {
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
+    cursor: pointer;
     a{
         color: #1b357e;
     }
@@ -195,6 +198,7 @@ footer {
 }
 
 button {
+   
     width: 200px;
     height: 40px;
     margin-right: 8px;
@@ -212,5 +216,11 @@ button:hover {
     cursor: pointer;
     color: #1351d8;
     border: solid 2px #1351d8
+}
+
+.btn-carousel {
+    position: relative;
+    align-items: center;
+    justify-content: center;
 }
 
