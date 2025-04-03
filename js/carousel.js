@@ -48,29 +48,32 @@ class Carousel {
         // Exibe o item atual e depois incrementa o índice
         Carousel.Show();
         Carousel._sequence = (Carousel._sequence + 1) % Carousel._size;
+        clearInterval(Carousel._interval); //limpa intervalo
+        Carousel._interval = setInterval(() => {
+            Carousel.Next();
+        }, 2000);
     }
 //metodo voltar 
     static Prev() {
         // Decrementa o índice e exibe o item anterior sem incrementar
         Carousel._sequence = (Carousel._sequence - 1 + Carousel._size) % Carousel._size;
         Carousel.Show();
+        clearInterval(Carousel._interval);
+        Carousel._interval = setInterval(() => { //seta o intervalo junto com o carousel 
+            Carousel.Next();
+        }, 2000);
     }
 }
 
 //função para voltar 
 function Back() {
-    clearInterval(Carousel._interval); //limpa intervalo
     Carousel.Prev(); //chama o metodo proximo 
-    Carousel._interval = setInterval(() => { //seta o intervalo junto com o carousel 
-        Carousel.Next();
-    }, 2000);
+    
 }
 
 //função para ir para o proximo 
 function Prox() {
-    clearInterval(Carousel._interval);
-    Carousel.Next();
-    Carousel._interval = setInterval(() => {
-        Carousel.Next();
-    }, 2000);
+    Carousel.Next(); //chama o metodo ir para o proximo 
+    
 }
+

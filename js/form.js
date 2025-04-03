@@ -19,7 +19,7 @@ function Post(form) {
             form.elements.namedItem("contato").value);
 
             console.log(data);
-
+            Enviar()
             form.reset();
             
 }
