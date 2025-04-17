@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2024",
+    "lib": ["dom", "ESNext"],
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    "allowJs": true,
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+
+    
+  },
+  
+  
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+  
+}
